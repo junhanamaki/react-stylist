@@ -10,5 +10,8 @@
     "react"
   ],
   "author": "jun.hanamaki@gmail.com",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react": "^0.14.2"
+  }
 }
