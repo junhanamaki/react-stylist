@@ -1,9 +1,16 @@
-import Stylist from './Stylist.jsx';
-import SlideStyle from './styles/Slide.css';
+import coiso from './coiso.js';
+import React from 'react';
 
-const Styles = [{
-  name: 'slide',
-  style: SlideStyle,
-}];
+function hello() {
 
-export default Stylist;
+}
+
+class A {
+
+}
+
+document.write("It works.");
+
+class R extends React.Component {
+
+}
