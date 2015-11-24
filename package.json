@@ -5,10 +5,11 @@
   "author": "jun.hanamaki@gmail.com",
   "main": "lib/index.js",
   "scripts": {
-    "start": "webpack",
+    "start": "webpack-dev-server --progress --colors --config webpack.config.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+    "javascript",
     "react",
     "css",
     "animation"
@@ -22,6 +23,7 @@
     "babel-preset-stage-0": "^6.1.18",
     "react": "^0.14.3",
     "react-css-modules": "^3.6.1",
-    "webpack": "^1.12.8"
+    "webpack": "^1.12.8",
+    "webpack-dev-server": "^1.12.1"
   }
 }
