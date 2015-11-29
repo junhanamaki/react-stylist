@@ -5,11 +5,9 @@
   "author": "jun.hanamaki@gmail.com",
   "main": "lib/index.js",
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server --progress --colors --config webpack.config.dev.js",
+    "start": "node_modules/.bin/webpack-dev-server --progress --colors --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-lib": "rm -rf lib && node_modules/.bin/babel src --out-dir lib",
-    "build-dist": "rm -rf dist && node_modules/.bin/webpack",
-    "build-all": "npm run build-lib && npm run build-dist"
+    "build": "rm -rf lib && node_modules/.bin/babel src --out-dir lib"
   },
   "keywords": [
     "javascript",
