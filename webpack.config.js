@@ -1,20 +1,23 @@
 var path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './app/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
-      {
-        loader: 'babel-loader',
-        test: /\.(js|jsx)$/,
-        query: {
-          presets: ['es2015', 'stage-0', 'react']
-        }
-      }
-    ]
+    preLoaders: [{
+      loader: 'eslint-loader',
+      test: /\.(js|jsx)$/
+    }],
+    loaders: [{
+      loader: 'babel-loader',
+      test: /\.(js|jsx)$/,
+      query: { presets: ['es2015', 'stage-0', 'react'] }
+    }]
+  },
+  eslint: {
+    configFile: path.resolve(__dirname, '.eslintrc')
   }
 };
