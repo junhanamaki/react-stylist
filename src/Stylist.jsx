@@ -1,3 +1,4 @@
+import React from 'React';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Transition from './Transition.js';
 

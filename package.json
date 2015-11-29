@@ -29,6 +29,7 @@
     "eslint-plugin-react": "^3.11.1",
     "react": "^0.14.3",
     "react-css-modules": "^3.6.1",
+    "react-dom": "^0.14.3",
     "webpack": "^1.12.8",
     "webpack-dev-server": "^1.12.1"
   }

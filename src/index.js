@@ -1,5 +1,3 @@
-document.write("It works.");
+import Stylist from './Stylist.jsx';
 
-class a {
-
-}
+export default Stylist;
