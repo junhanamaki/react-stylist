@@ -11,9 +11,6 @@ module.exports = {
       {
         loader: 'babel-loader',
         test: /\.(js|jsx)$/,
-        include: [
-          path.resolve(__dirname, 'src')
-        ],
         query: {
           presets: ['es2015', 'stage-0', 'react']
         }
