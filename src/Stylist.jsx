@@ -1,8 +1,9 @@
-import React from 'React';
+import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Transition from './Transition.js';
 
-const { count: countChildren } = React.Children;
+const { Children, Component, PropTypes } = React;
+const { count: countChildren } = Children;
 
 const defType = 'slide-left';
 const defEasing = 'linear';
@@ -32,7 +33,11 @@ function buildConfig(name, props) {
   return [type, timeout, easing, delay];
 }
 
-export default class Stylist extends React.Component {
+export default class Stylist extends Component {
+  static propTypes = {
+    children: PropTypes.object,
+  };
+
   constructor(...args) {
     super(...args);
 
