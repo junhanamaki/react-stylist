@@ -4,7 +4,7 @@ import Transition from './Transition.js';
 
 const {
   Component,
-  PropTypes: { string, number, node },
+  PropTypes: { string, number, node, any, bool },
   Children: { count: countChildren },
 } = React;
 
@@ -31,12 +31,29 @@ function buildConfig(name, props) {
 
 export default class Stylist extends Component {
   static propTypes = {
-    style: string, easing: string, timeout: number, interval: number,
-    appearStyle: string, appearEasing: string, appearTimeout: number, appearInterval: number,
-    enterStyle: string, enterSasing: string, enterTimeout: number, enterInterval: number,
-    leaveStyle: string, leaveEasing: string, leaveTimeout: number, leaveInterval: number,
-    disappearStyle: string, disappearEasing: string, disappearTimeout: number, disappearInterval: number,
+    style: string,
+    easing: string,
+    timeout: number,
+    interval: number,
+    appearStyle: string,
+    appearEasing: string,
+    appearTimeout: number,
+    appearInterval: number,
+    enterStyle: string,
+    enterEasing: string,
+    enterTimeout: number,
+    enterInterval: number,
+    leaveStyle: string,
+    leaveEasing: string,
+    leaveTimeout: number,
+    leaveInterval: number,
+    disappearStyle: string,
+    disappearEasing: string,
+    disappearTimeout: number,
+    disappearInterval: number,
+    component: any,
     children: node,
+    disappear: bool,
   };
 
   constructor(...args) {
@@ -57,6 +74,7 @@ export default class Stylist extends Component {
       easing: 'linear',
       timeout: 1000,
       interval: 200,
+      disappear: false,
     };
   }
 
@@ -77,6 +95,6 @@ export default class Stylist extends Component {
   }
 
   render() {
-    return <ReactCSSTransitionGroup {...this.props} />;
+    return <ReactCSSTransitionGroup />;
   }
 }

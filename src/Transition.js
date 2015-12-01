@@ -37,8 +37,6 @@ export default class Transition {
     this.easing = easing;
     this.delay = delay;
     this.count = count;
-
-    this.updateProps();
   }
 
   destroy() {
