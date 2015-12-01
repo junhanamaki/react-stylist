@@ -1,35 +1,49 @@
 import React from 'react';
 import Stylist from '../../src/index.js';
 
+let seed = 0;
+
 export default class App extends React.Component {
   constructor(...args) {
     super(...args);
 
+    this.onTextChange = this.onTextChange.bind(this);
     this.onAddClick = this.onAddClick.bind(this);
     this.onRemoveClick = this.onRemoveClick.bind(this);
 
     this.state = { items: [] };
   }
 
-  onAddClick({ target }) {
-    const items = this.state.items.slice(0);
-    items.push(target.value);
+  onTextChange({ target: { value }}) {
+    this.setState({ text: value });
+  }
+
+  onAddClick() {
+    const { items, text } = this.state;
+    items.push({ id: ++seed, text });
     this.setState({ items: items });
   }
 
-  onRemoveClick() {
-
+  onRemoveClick(id) {
+    console.log(id);
   }
 
   renderItems() {
-
+    return this.state.items.map(({ id, text }) => {
+      return (
+        <div key={id}>
+          {`${id} - ${text}`}
+          <button onClick={this.onRemoveClick.bind(this, id)}>Remove</button>
+        </div>
+      );
+    });
   }
 
   render() {
     return (
       <div>
+        <input onChange={this.onTextChange} value={this.state.text} />
         <button onClick={this.onAddClick}>Add</button>
-        <button onClick={this.onRemoveClick}>Remove</button>
         <Stylist>
           {this.renderItems()}
         </Stylist>

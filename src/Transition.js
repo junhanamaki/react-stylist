@@ -1,7 +1,7 @@
 import StyleTag from './StyleTag.js';
 
 let uniqueId = 0;
-function generateUniqueName() {
+function generateSelector() {
   return `stylist_transition_${++uniqueId}`;
 }
 
@@ -9,8 +9,7 @@ const parentNode = document.getElementsByTagName('head')[0];
 
 export default class Transition {
   constructor(type, timeout, easing, delay, count) {
-    const confClassName = generateUniqueName();
-    const props = {};
+    const confClassName = generateSelector();
 
     this.confClassName = confClassName;
     this.type = type;
@@ -18,12 +17,9 @@ export default class Transition {
     this.easing = easing;
     this.delay = delay;
     this.count = count;
-    this.props = props;
 
     if (type) {
       this.styleTag = new StyleTag(`.${confClassName}`, null, { parentNode });
-    } else {
-      this.destroy();
     }
   }
 
@@ -46,10 +42,6 @@ export default class Transition {
   }
 
   destroy() {
-    this.destroyStyleTag();
-  }
-
-  destroyStyleTag() {
     const { styleTag } = this;
 
     if (styleTag) {

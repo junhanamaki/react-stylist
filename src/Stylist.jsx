@@ -2,13 +2,11 @@ import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Transition from './Transition.js';
 
-const { Children, Component, PropTypes } = React;
-const { count: countChildren } = Children;
-
-const defType = 'slide-left';
-const defEasing = 'linear';
-const defTimeout = 1000;
-const defDelay = 200;
+const {
+  Component,
+  PropTypes: { string, number, node },
+  Children: { count: countChildren },
+} = React;
 
 function grabValue(...args) {
   const { length } = args;
@@ -23,19 +21,22 @@ function grabValue(...args) {
 }
 
 function buildConfig(name, props) {
-  const Name = name.charAt(0).toUpperCase() + name.slice(1);
-
-  const type = grabValue([props[`stylisy${Name}Type`], props.stylistType, defType]);
-  const timeout = grabValue([props[`stylist${Name}Timeout`], props.stylistTimeout, defTimeout]);
-  const easing = grabValue([props[`stylist${Name}Easing`], props.stylistEasing, defEasing]);
-  const delay = grabValue([props[`stylist${Name}Delay`], props.stylistDelay, defDelay]);
-
-  return [type, timeout, easing, delay];
+  return [
+    grabValue(props[`${name}Style`], props.style),
+    grabValue(props[`${name}Easing`], props.easing),
+    grabValue(props[`${name}Timeout`], props.timeout),
+    grabValue(props[`${name}Interval`], props.interval),
+  ];
 }
 
 export default class Stylist extends Component {
   static propTypes = {
-    children: PropTypes.object,
+    style: string, easing: string, timeout: number, interval: number,
+    appearStyle: string, appearEasing: string, appearTimeout: number, appearInterval: number,
+    enterStyle: string, enterSasing: string, enterTimeout: number, enterInterval: number,
+    leaveStyle: string, leaveEasing: string, leaveTimeout: number, leaveInterval: number,
+    disappearStyle: string, disappearEasing: string, disappearTimeout: number, disappearInterval: number,
+    children: node,
   };
 
   constructor(...args) {
@@ -48,6 +49,15 @@ export default class Stylist extends Component {
     this.transitionEnter = new Transition('enter', ...buildConfig('enter', props));
     this.transitionLeave = new Transition('leave', ...buildConfig('leave', props));
     this.transitionDisappear = new Transition('disappear', ...buildConfig('disappear', props), count);
+  }
+
+  static getDefaultProps() {
+    return {
+      style: 'slide-left',
+      easing: 'linear',
+      timeout: 1000,
+      interval: 200,
+    };
   }
 
   componentWillReceiveProps(newProps) {
