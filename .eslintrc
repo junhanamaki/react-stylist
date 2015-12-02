@@ -3,6 +3,7 @@
   "parser": "babel-eslint",
   "plugins": ["react"],
   "rules": {
-    "strict": 0
+    "strict": 0,
+    "react/jsx-boolean-value": 0
   }
 }

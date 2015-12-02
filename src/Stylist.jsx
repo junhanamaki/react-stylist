@@ -35,25 +35,38 @@ export default class Stylist extends Component {
     easing: string,
     timeout: number,
     interval: number,
+
     appearStyle: string,
     appearEasing: string,
     appearTimeout: number,
     appearInterval: number,
+
     enterStyle: string,
     enterEasing: string,
     enterTimeout: number,
     enterInterval: number,
+
     leaveStyle: string,
     leaveEasing: string,
     leaveTimeout: number,
     leaveInterval: number,
+
     disappearStyle: string,
     disappearEasing: string,
     disappearTimeout: number,
     disappearInterval: number,
+
     component: any,
     children: node,
     disappear: bool,
+  };
+
+  static defaultProps = {
+    style: 'slide-left',
+    easing: 'linear',
+    timeout: 1000,
+    interval: 200,
+    disappear: false,
   };
 
   constructor(...args) {
@@ -66,16 +79,6 @@ export default class Stylist extends Component {
     this.transitionEnter = new Transition('enter', ...buildConfig('enter', props));
     this.transitionLeave = new Transition('leave', ...buildConfig('leave', props));
     this.transitionDisappear = new Transition('disappear', ...buildConfig('disappear', props), count);
-  }
-
-  static getDefaultProps() {
-    return {
-      style: 'slide-left',
-      easing: 'linear',
-      timeout: 1000,
-      interval: 200,
-      disappear: false,
-    };
   }
 
   componentWillReceiveProps(newProps) {
@@ -95,6 +98,25 @@ export default class Stylist extends Component {
   }
 
   render() {
-    return <ReactCSSTransitionGroup />;
+    const {
+      transitionAppear,
+      transitionEnter,
+      transitionLeave,
+      transitionDisappear,
+      props: { component, children },
+    } = this;
+
+    return (
+      <ReactCSSTransitionGroup
+        transitionName={}
+        transitionAppear={true}
+        transitionAppearTimeout={transitionAppear.timeout}
+        transitionEnterTimeout={transitionEnter.timeout}
+        transitionLeaveTimeout={transitionLeave.timeout}
+        component={component}
+      >
+        {children}
+      </ReactCSSTransitionGroup>
+    );
   }
 }
