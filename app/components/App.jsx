@@ -20,12 +20,20 @@ export default class App extends React.Component {
 
   onAddClick() {
     const { items, text } = this.state;
+
     items.push({ id: ++seed, text });
-    this.setState({ items: items });
+
+    this.setState({ items });
   }
 
   onRemoveClick(id) {
-    console.log(id);
+    const items = this.state.items.reduce((array, item) => {
+      if (item.id !== id) { array.push(item); }
+
+      return array;
+    }, []);
+
+    this.setState({ items });
   }
 
   renderItems() {
@@ -33,7 +41,7 @@ export default class App extends React.Component {
       return (
         <div key={id}>
           {`${id} - ${text}`}
-          <button onClick={this.onRemoveClick.bind(this, id)}>Remove</button>
+          <button onClick={() => this.onRemoveClick(id)}>Remove</button>
         </div>
       );
     });
