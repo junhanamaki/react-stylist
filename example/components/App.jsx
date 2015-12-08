@@ -39,9 +39,12 @@ export default class App extends React.Component {
   renderItems() {
     return this.state.items.map(({ id, text }) => {
       return (
-        <div key={id}>
+        <div
+          key={id}
+          onClick={() => this.onRemoveClick(id)}
+          style={{ backgroundColor: 'grey', cursor: 'pointer' }}
+        >
           {`${id} - ${text}`}
-          <button onClick={() => this.onRemoveClick(id)}>Remove</button>
         </div>
       );
     });
@@ -53,7 +56,7 @@ export default class App extends React.Component {
         <input onChange={this.onTextChange} value={this.state.text} />
         <button onClick={this.onAddClick}>Add</button>
         <br />
-        <Stylist>
+        <Stylist style={{ display: 'inline-block' }}>
           {this.renderItems()}
         </Stylist>
       </div>

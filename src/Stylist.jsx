@@ -25,7 +25,7 @@ function buildConfig(name, props) {
     grabValue(props[`${name}Style`], props.style),
     grabValue(props[`${name}Easing`], props.easing),
     grabValue(props[`${name}Duration`], props.duration),
-    grabValue(props[`${name}Delay`], props.delay),
+    grabValue(props[`${name}Interval`], props.interval),
   ];
 }
 
@@ -34,27 +34,27 @@ export default class Stylist extends Component {
     appearStyle: string,       // style to apply on mount, or when prop 'disappear' changes to falsy
     appearEasing: string,      // easing for appear
     appearDuration: number,    // duration of each appearing element animation
-    appearDelay: number,       // time to wait to apply style to appearing element
+    appearInterval: number,    // time to wait to apply style to appearing element
 
     enterStyle: string,        // style to apply to entering/added elements
     enterEasing: string,       // easing for enter
     enterDuration: number,     // duration of each entering element animation
-    enterDelay: number,        // time to wait to apply style to entering element
+    enterInterval: number,     // time to wait to apply style to entering element
 
     leaveStyle: string,        // style to apply to leaving/removed elements
     leaveEasing: string,       // easing for leave
     leaveDuration: number,     // duration of each leaving element animation
-    leaveDelay: number,        // time to wait to apply style to leaving elements
+    leaveInterval: number,     // time to wait to apply style to leaving elements
 
     disappearStyle: string,    // style to apply when prop 'disappear' changes to truty
     disappearEasing: string,   // easing for disappear
     disappearDuration: number, // duration of each disappeating element animation
-    disappearDelay: number,    // time to wait to apply style to disappearing elements
+    disappearInterval: number, // time to wait to apply style to disappearing elements
 
     style: string,             // default style to fallback to
     easing: string,            // default easing to fallback to
     duration: number,          // default duration to fallback to
-    delay: number,             // default delay to fallback to
+    interval: number,          // default interval to fallback to
 
     component: any,            // component used to wrap elements
     children: node,            // elements to animate
@@ -65,7 +65,7 @@ export default class Stylist extends Component {
     style: 'slide-left',
     easing: 'linear',
     duration: 500,
-    delay: 200,
+    interval: 200,
     disappear: false,
   };
 
@@ -103,10 +103,13 @@ export default class Stylist extends Component {
       transitionEnter,
       transitionLeave,
       transitionDisappear,
-      props: { component, children, disappear },
+      props: { disappear, children, ...propsForReactCSSTransitionGroup },
     } = this;
 
-    let transitionName;
+    const transitionName = {
+      appear: transitionAppear.name,
+      appearActive: transitionAppear.name,
+    };
     let transitionLeaveTimeout;
     let items;
     if (disappear) {
@@ -123,7 +126,7 @@ export default class Stylist extends Component {
         transitionAppearTimeout={transitionAppear.timeout}
         transitionEnterTimeout={transitionEnter.timeout}
         transitionLeaveTimeout={transitionLeaveTimeout}
-        component={component}
+        {...propsForReactCSSTransitionGroup}
       >
         {items}
       </ReactCSSTransitionGroup>
