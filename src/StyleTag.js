@@ -1,4 +1,4 @@
-import { objectForEach } from './Utils.js';
+import { objectForEach } from './utils.js';
 
 function toCssRuleHTML(style) {
   let cssRuleHTML = '';

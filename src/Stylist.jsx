@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { grabNonNull } from './utils.js';
 import Transition from './Transition.js';
 
 const {
@@ -8,24 +9,12 @@ const {
   Children: { count: countChildren },
 } = React;
 
-function grabValue(...args) {
-  const { length } = args;
-
-  for (let index = 0; index < length; ++index) {
-    const value = args[index];
-
-    if (value !== undefined && value !== null) { return value; }
-  }
-
-  return args[length - 1];
-}
-
 function buildConfig(name, props) {
   return [
-    grabValue(props[`${name}Style`], props.style),
-    grabValue(props[`${name}Easing`], props.easing),
-    grabValue(props[`${name}Duration`], props.duration),
-    grabValue(props[`${name}Interval`], props.interval),
+    grabNonNull(props[`${name}Style`], props.style),
+    grabNonNull(props[`${name}Easing`], props.easing),
+    grabNonNull(props[`${name}Duration`], props.duration),
+    grabNonNull(props[`${name}Interval`], props.interval),
   ];
 }
 
@@ -51,7 +40,7 @@ export default class Stylist extends Component {
     disappearDuration: number, // duration of each disappeating element animation
     disappearInterval: number, // time to wait to apply style to disappearing elements
 
-    style: string,             // default style to fallback to
+    styleGroup: string,        // default style to fallback to
     easing: string,            // default easing to fallback to
     duration: number,          // default duration to fallback to
     interval: number,          // default interval to fallback to
