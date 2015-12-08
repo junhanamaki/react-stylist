@@ -46,7 +46,7 @@ export default class Stylist extends Component {
     leaveDuration: number,     // duration of each leaving element animation
     leaveInterval: number,     // time to wait to apply style to leaving elements
 
-    disappearStyle: string,    // style to apply when prop 'disappear' changes to truty
+    disappearStyle: string,    // style to apply when prop 'disappear' changes to truthy
     disappearEasing: string,   // easing for disappear
     disappearDuration: number, // duration of each disappeating element animation
     disappearInterval: number, // time to wait to apply style to disappearing elements
