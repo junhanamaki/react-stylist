@@ -1,8 +1,8 @@
-import { objectForEach } from './utils.js';
+import objectEach from './utils/objectEach.js';
 
 function toCssRuleHTML(style) {
   let cssRuleHTML = '';
-  objectForEach(style, (property, value) => {
+  objectEach(style, (property, value) => {
     cssRuleHTML += `${property}: ${value}; `;
   });
 
