@@ -1,16 +1,12 @@
 import objectEach from './utils/objectEach.js';
 
-function toCssRuleHTML(style) {
-  let cssRuleHTML = '';
+function buildInnerHTML(selector, style) {
+  const cssRuleHTML = '';
   objectEach(style, (property, value) => {
-    cssRuleHTML += `${property}: ${value}; `;
+    cssRuleHTML.concat(`${property}: ${value}; `);
   });
 
-  return cssRuleHTML;
-}
-
-function buildInnerHTML(selector, style) {
-  return `${selector} { ${toCssRuleHTML(style)} }`;
+  return `${selector} { ${cssRuleHTML}}`;
 }
 
 export default class StyleTag {
@@ -39,8 +35,7 @@ export default class StyleTag {
   }
 
   destroy() {
-    const { styleTag } = this;
-    const { parentNode } = styleTag;
+    const { styleTag, styleTag: { parentNode } } = this;
 
     if (parentNode) { parentNode.removeChild(styleTag); }
   }
