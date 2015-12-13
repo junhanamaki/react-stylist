@@ -2,6 +2,7 @@ import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import nonNull from './utils/nonNull.js';
 import Transition from './utils/Transition.js';
+import slideLeft from './styles/slide-left.css';
 
 const {
   Component,
@@ -115,17 +116,21 @@ export default class Stylist extends Component {
       items = null;
     }
 
+    console.log(slideLeft); // eslint-disable-line
+
     return (
-      <ReactCSSTransitionGroup
-        {...transitionProps}
-        transitionName={transitionName}
-        transitionAppear={true}
-        transitionAppearTimeout={transitionAppear.timeout}
-        transitionEnterTimeout={transitionEnter.timeout}
-        transitionLeaveTimeout={transitionLeaveTimeout}
-      >
-        {items}
-      </ReactCSSTransitionGroup>
+      <div className={slideLeft.appear}>
+        <ReactCSSTransitionGroup
+          {...transitionProps}
+          transitionName={transitionName}
+          transitionAppear={true}
+          transitionAppearTimeout={transitionAppear.timeout}
+          transitionEnterTimeout={transitionEnter.timeout}
+          transitionLeaveTimeout={transitionLeaveTimeout}
+        >
+          {items}
+        </ReactCSSTransitionGroup>
+      </div>
     );
   }
 }

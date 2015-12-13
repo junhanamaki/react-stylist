@@ -8,8 +8,10 @@
     "start": "node_modules/.bin/webpack-dev-server --progress --colors --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "node_modules/.bin/eslint src/**",
-    "build-lib": "rm -rf lib && node_modules/.bin/babel src --out-dir lib",
-    "build": "npm run lint && npm run build-lib"
+    "lib:clear": "rm -rf lib",
+    "lib:build": "node_modules/.bin/babel src --out-dir lib",
+    "lib:rebuild": "npm run lib:clear && npm run lib:build",
+    "build": "npm run lint && npm run lib:rebuild"
   },
   "keywords": [
     "javascript",
@@ -26,6 +28,7 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
+    "css-loader": "^0.23.0",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^1.0.2",
     "eslint-loader": "^1.1.1",
@@ -34,6 +37,7 @@
     "react-addons-css-transition-group": "^0.14.3",
     "react-css-modules": "^3.6.3",
     "react-dom": "^0.14.3",
+    "style-loader": "^0.13.0",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
   }
