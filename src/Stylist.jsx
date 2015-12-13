@@ -20,34 +20,34 @@ function buildTransitionParams(name, props) {
 
 export default class Stylist extends Component {
   static propTypes = {
-    appearName: string,      // style to apply on mount, or when prop 'hide' changes to falsy
-    appearEasing: string,    // easing for appear
-    appearDuration: number,  // duration of each appearing element animation
-    appearInterval: number,  // time to wait to apply style to appearing element
+    appearName: string,     // style to apply on mount, or when prop 'hide' changes to falsy
+    appearEasing: string,   // easing for appear
+    appearDuration: number, // duration of each appearing element animation
+    appearInterval: number, // time to wait to apply style to appearing element
 
-    enterName: string,       // style to apply to entering/added elements
-    enterEasing: string,     // easing for enter
-    enterDuration: number,   // duration of each entering element animation
-    enterInterval: number,   // time to wait to apply style to entering element
+    enterName: string,      // style to apply to entering/added elements
+    enterEasing: string,    // easing for enter
+    enterDuration: number,  // duration of each entering element animation
+    enterInterval: number,  // time to wait to apply style to entering element
 
-    leaveName: string,       // style to apply to leaving/removed elements
-    leaveEasing: string,     // easing for leave
-    leaveDuration: number,   // duration of each leaving element animation
-    leaveInterval: number,   // time to wait to apply style to leaving elements
+    leaveName: string,      // style to apply to leaving/removed elements
+    leaveEasing: string,    // easing for leave
+    leaveDuration: number,  // duration of each leaving element animation
+    leaveInterval: number,  // time to wait to apply style to leaving elements
 
-    hideName: string,        // style to apply when prop 'hide' changes to truthy
-    hideEasing: string,      // easing for hide
-    hideDuration: number,    // duration of each hideing element animation
-    hideInterval: number,    // time to wait to apply style to hideing elements
+    hideName: string,       // style to apply when prop 'hide' changes to truthy
+    hideEasing: string,     // easing for hide
+    hideDuration: number,   // duration of each hideing element animation
+    hideInterval: number,   // time to wait to apply style to hideing elements
 
-    name: string,            // default style to fallback to
-    easing: string,          // default easing to fallback to
-    duration: number,        // default duration to fallback to
-    interval: number,        // default interval to fallback to
+    name: string,           // default style to fallback to
+    easing: string,         // default easing to fallback to
+    duration: number,       // default duration to fallback to
+    interval: number,       // default interval to fallback to
 
-    component: any,          // component used to wrap elements
-    children: node,          // elements to animate
-    hide: bool,              // if true will apply hide style to all children
+    component: any,         // component used to wrap elements
+    children: node,         // elements to animate
+    hide: bool,             // if true will apply hide style to all children
   };
 
   static defaultProps = {
