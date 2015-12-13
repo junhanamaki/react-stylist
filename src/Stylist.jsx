@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import nonNull from './utils/nonNull.js';
-import Transition from './Transition.js';
+import Transition from './utils/Transition.js';
 
 const {
   Component,
@@ -92,7 +92,7 @@ export default class Stylist extends Component {
       transitionEnter,
       transitionLeave,
       transitionHide,
-      props: { hide, children, ...propsRemainder },
+      props: { hide, children, ...transitionProps },
     } = this;
 
     const transitionName = {
@@ -117,7 +117,7 @@ export default class Stylist extends Component {
 
     return (
       <ReactCSSTransitionGroup
-        {...propsRemainder}
+        {...transitionProps}
         transitionName={transitionName}
         transitionAppear={true}
         transitionAppearTimeout={transitionAppear.timeout}

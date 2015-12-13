@@ -1,4 +1,4 @@
-import objectEach from './utils/objectEach.js';
+import objectEach from './objectEach.js';
 
 function buildInnerHTML(selector, style) {
   const cssRuleHTML = '';

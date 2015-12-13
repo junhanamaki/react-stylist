@@ -56,7 +56,9 @@ export default class App extends React.Component {
         <input onChange={this.onTextChange} value={this.state.text} />
         <button onClick={this.onAddClick}>Add</button>
         <br />
-        <Stylist style={{ display: 'inline-block' }}>
+        <Stylist
+          style={{ display: 'inline-block' }}
+        >
           {this.renderItems()}
         </Stylist>
       </div>
