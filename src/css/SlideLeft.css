@@ -1,17 +1,17 @@
 .appear {
-
+  transform: translate(100%);
 }
 
 .appear.appear-active {
-
+  transform: translate(0%);
 }
 
 .enter {
-
+  transform: translate(100%);
 }
 
 .enter.enter-active {
-
+  transform: translate(0%);
 }
 
 .leave {
@@ -19,7 +19,7 @@
 }
 
 .leave.leave-active {
-
+  transform: translate(-100%);
 }
 
 .hide {
@@ -27,5 +27,5 @@
 }
 
 .hide.hide-active {
-
+  transform: translate(-100%);
 }

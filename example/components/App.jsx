@@ -42,7 +42,7 @@ export default class App extends React.Component {
         <div
           key={id}
           onClick={() => this.onRemoveClick(id)}
-          style={{ backgroundColor: 'grey', cursor: 'pointer' }}
+          style={{ cursor: 'pointer' }}
         >
           {`${id} - ${text}`}
         </div>

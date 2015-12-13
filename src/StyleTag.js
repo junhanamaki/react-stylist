@@ -1,9 +1,9 @@
 import objectEach from './utils/objectEach.js';
 
 function buildInnerHTML(selector, style) {
-  const cssRuleHTML = '';
+  let cssRuleHTML = '';
   objectEach(style, (property, value) => {
-    cssRuleHTML.concat(`${property}: ${value}; `);
+    cssRuleHTML = cssRuleHTML.concat(`${property}: ${value}; `);
   });
 
   return `${selector} { ${cssRuleHTML}}`;

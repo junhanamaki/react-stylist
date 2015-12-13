@@ -12,7 +12,9 @@ export default class Transition {
 
     const activeClassName = style[`${type}-active`];
     const activeStyle = {
-
+      transition: `transform ${duration}ms ${easing}`,
+      'animation-duration': `${duration}ms`,
+      'animation-timing-function': easing,
     };
 
     this.styleTagActive = new StyleTag(`.${activeClassName}`, activeStyle, { parentNode });
