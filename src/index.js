@@ -1,6 +1,8 @@
-import Stylist from './Stylist.jsx';
-import * as Registry from './Registry.js';
+import { register } from './Registry.js';
+import SlideLeft from 'style-loader!css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]!./css/SlideLeft.css';
 
-export { Registry };
+register('stylist.slide-left', SlideLeft);
 
-export default Stylist;
+export { register, find } from './Registry.js';
+
+export { default as default } from './Stylist.jsx';

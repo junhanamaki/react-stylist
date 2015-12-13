@@ -1,6 +1,5 @@
 import React from 'react';
 import Stylist from '../../src/index.js';
-import '../../src/styles/SlideLeft.js';
 
 let seed = 0;
 

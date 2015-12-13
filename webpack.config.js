@@ -15,9 +15,6 @@ module.exports = {
       loader: 'babel-loader',
       test: /\.(js|jsx)$/,
       query: { presets: ['es2015', 'stage-0', 'react'] }
-    }, {
-      loader: 'style-loader!css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]',
-      test:  /\.css$/
     }]
   },
   eslint: {
