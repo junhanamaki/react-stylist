@@ -3,7 +3,7 @@ const registry = {};
 export function register(name, style) {
   // TODO
   // - check for collision
-  // - validate style
+  // - validate if style has needed keys
 
   registry[name] = style;
 }
