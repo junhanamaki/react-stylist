@@ -11,7 +11,7 @@ const {
 
 function buildTransitionParams(name, props) {
   return [
-    nonNull(props[`${name}StyleName`], props.styleName),
+    nonNull(props[`${name}Name`], props.name),
     nonNull(props[`${name}Easing`], props.easing),
     nonNull(props[`${name}Duration`], props.duration),
     nonNull(props[`${name}Interval`], props.interval),
@@ -20,27 +20,27 @@ function buildTransitionParams(name, props) {
 
 export default class Stylist extends Component {
   static propTypes = {
-    appearStyleName: string, // style to apply on mount, or when prop 'hide' changes to falsy
+    appearName: string,      // style to apply on mount, or when prop 'hide' changes to falsy
     appearEasing: string,    // easing for appear
     appearDuration: number,  // duration of each appearing element animation
     appearInterval: number,  // time to wait to apply style to appearing element
 
-    enterStyleName: string,  // style to apply to entering/added elements
+    enterName: string,       // style to apply to entering/added elements
     enterEasing: string,     // easing for enter
     enterDuration: number,   // duration of each entering element animation
     enterInterval: number,   // time to wait to apply style to entering element
 
-    leaveStyleName: string,  // style to apply to leaving/removed elements
+    leaveName: string,       // style to apply to leaving/removed elements
     leaveEasing: string,     // easing for leave
     leaveDuration: number,   // duration of each leaving element animation
     leaveInterval: number,   // time to wait to apply style to leaving elements
 
-    hideStyleName: string,   // style to apply when prop 'hide' changes to truthy
+    hideName: string,        // style to apply when prop 'hide' changes to truthy
     hideEasing: string,      // easing for hide
     hideDuration: number,    // duration of each hideing element animation
     hideInterval: number,    // time to wait to apply style to hideing elements
 
-    styleName: string,       // default style to fallback to
+    name: string,            // default style to fallback to
     easing: string,          // default easing to fallback to
     duration: number,        // default duration to fallback to
     interval: number,        // default interval to fallback to
@@ -51,7 +51,7 @@ export default class Stylist extends Component {
   };
 
   static defaultProps = {
-    styleName: 'stylist-slide-to-left',
+    name: 'stylist-slide-to-left',
     easing: 'linear',
     duration: 500,
     interval: 200,
