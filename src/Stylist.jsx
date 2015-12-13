@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import nonNull from './utils/nonNull.js';
-import Transition from './utils/Transition.js';
+import Transition from './Transition.js';
 
 const {
   Component,
@@ -9,12 +9,12 @@ const {
   Children: { count: countChildren },
 } = React;
 
-function buildTransitionParams(name, props) {
+function buildTransitionParams(type, props) {
   return [
-    nonNull(props[`${name}Name`], props.name),
-    nonNull(props[`${name}Easing`], props.easing),
-    nonNull(props[`${name}Duration`], props.duration),
-    nonNull(props[`${name}Interval`], props.interval),
+    nonNull(props[`${type}Name`], props.name),
+    nonNull(props[`${type}Easing`], props.easing),
+    nonNull(props[`${type}Duration`], props.duration),
+    nonNull(props[`${type}Interval`], props.interval),
   ];
 }
 
@@ -64,10 +64,10 @@ export default class Stylist extends Component {
     const props = args[0];
     const count = countChildren(props.children);
 
-    this.transitionAppear = new Transition(...buildTransitionParams('appear', props), count);
-    this.transitionEnter = new Transition(...buildTransitionParams('enter', props), count);
-    this.transitionLeave = new Transition(...buildTransitionParams('leave', props), count);
-    this.transitionHide = new Transition(...buildTransitionParams('hide', props), count);
+    this.transitionAppear = new Transition('appear', ...buildTransitionParams('appear', props), count);
+    this.transitionEnter = new Transition('enter', ...buildTransitionParams('enter', props), count);
+    this.transitionLeave = new Transition('leave', ...buildTransitionParams('leave', props), count);
+    this.transitionHide = new Transition('hide', ...buildTransitionParams('hide', props), count);
   }
 
   componentWillReceiveProps(newProps) {
@@ -96,22 +96,22 @@ export default class Stylist extends Component {
     } = this;
 
     const transitionName = {
-      appear: transitionAppear.className,
+      appear: transitionAppear.mainClassName,
       appearActive: transitionAppear.activeClassName,
-      enter: transitionEnter.className,
+      enter: transitionEnter.mainClassName,
       enterActive: transitionEnter.activeClassName,
-      leave: transitionLeave.className,
+      leave: transitionLeave.mainClassName,
       leaveActive: transitionLeave.activeClassName,
     };
-    let transitionLeaveTimeout = transitionLeave.timeout;
+    let transitionLeaveTimeout = transitionLeave.duration;
     let items = children;
 
     if (hide) {
       Object.assign(transitionName, {
-        leave: transitionHide.className,
+        leave: transitionHide.mainClassName,
         leaveActive: transitionHide.activeClassName,
       });
-      transitionLeaveTimeout = transitionHide.timeout;
+      transitionLeaveTimeout = transitionHide.duration;
       items = null;
     }
 
@@ -120,8 +120,8 @@ export default class Stylist extends Component {
         {...transitionProps}
         transitionName={transitionName}
         transitionAppear={true}
-        transitionAppearTimeout={transitionAppear.timeout}
-        transitionEnterTimeout={transitionEnter.timeout}
+        transitionAppearTimeout={transitionAppear.duration}
+        transitionEnterTimeout={transitionEnter.duration}
         transitionLeaveTimeout={transitionLeaveTimeout}
       >
         {items}

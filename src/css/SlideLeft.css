@@ -2,7 +2,7 @@
 
 }
 
-.appear-active {
+.appear.appear-active {
 
 }
 
@@ -10,7 +10,7 @@
 
 }
 
-.enter-active {
+.enter.enter-active {
 
 }
 
@@ -18,14 +18,14 @@
 
 }
 
-.leave-active {
+.leave.leave-active {
 
 }
 
-.disappear {
+.hide {
 
 }
 
-.disappear-active {
+.hide.hide-active {
 
 }
