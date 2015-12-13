@@ -51,7 +51,7 @@ export default class Stylist extends Component {
   };
 
   static defaultProps = {
-    name: 'stylist-slide-to-left',
+    name: 'stylist.slide-left',
     easing: 'linear',
     duration: 500,
     interval: 200,
@@ -114,8 +114,6 @@ export default class Stylist extends Component {
       transitionLeaveTimeout = transitionHide.timeout;
       items = null;
     }
-
-    console.log(slideLeft); // eslint-disable-line
 
     return (
       <ReactCSSTransitionGroup
