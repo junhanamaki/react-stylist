@@ -1,11 +1,11 @@
 import React from 'react';
 import Stylist from '../../src/index.js';
+import pickColor from '../utils/colors.js';
 
 export default class Example extends React.Component {
   constructor() {
     super();
 
-    this.onTextChange = this.onTextChange.bind(this);
     this.onAddClick = this.onAddClick.bind(this);
     this.onItemClick = this.onItemClick.bind(this);
 
@@ -13,14 +13,10 @@ export default class Example extends React.Component {
     this.state = { items: [] };
   }
 
-  onTextChange({ target: { value }}) {
-    this.setState({ text: value });
-  }
-
   onAddClick() {
-    const { items, text } = this.state;
+    const { items } = this.state;
 
-    items.push({ id: ++this.seed, text });
+    items.push({ id: ++this.seed, color: pickColor() });
 
     this.setState({ items });
   }
@@ -36,14 +32,15 @@ export default class Example extends React.Component {
   }
 
   renderItems() {
-    return this.state.items.map(({ id, text }) => {
+    return this.state.items.map(({ id, color }) => {
       return (
         <div
           key={id}
           onClick={() => this.onItemClick(id)}
-          style={{ cursor: 'pointer' }}
+          className="item"
+          style={{ color }}
         >
-          {`${id} - ${text}`}
+          {`${id} - ${color}`}
         </div>
       );
     });
@@ -51,8 +48,9 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <input onChange={this.onTextChange} value={this.state.text} />
-        <button onClick={this.onAddClick}>Add</button>
+        <div className="control-panel">
+          <button onClick={this.onAddClick}>Add</button>
+        </div>
         <br />
         <Stylist>
           {this.renderItems()}

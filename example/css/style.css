@@ -1,4 +1,13 @@
 .example {
   margin: auto;
-  width: 200px;
+  width: 500px;
+}
+
+.control-panel {
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.item {
+  cursor: pointer;
 }
