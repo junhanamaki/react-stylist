@@ -52,7 +52,7 @@ export default class Example extends React.Component {
           <button onClick={this.onAddClick}>Add</button>
         </div>
         <br />
-        <Stylist>
+        <Stylist className="stylist">
           {this.renderItems()}
         </Stylist>
       </div>

@@ -8,6 +8,15 @@
   border: 1px solid black;
 }
 
+.stylist {
+  display: block;
+  margin: auto;
+  width: 80px;
+  padding: 3px;
+  background-color: black;
+}
+
 .item {
   cursor: pointer;
+  background-color: rgb(231, 231, 231);
 }
