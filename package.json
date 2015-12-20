@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "node_modules/.bin/eslint src/**",
     "lib:clear": "rm -rf lib",
-    "lib:build": "node_modules/.bin/babel src --out-dir lib",
+    "lib:build": "node_modules/.bin/babel src --out-dir lib && mkdir lib/css && cp src/css/* lib/css",
     "lib:rebuild": "npm run lib:clear && npm run lib:build",
     "dist:clear": "rm -rf dist",
     "dist:build": "node_modules/.bin/webpack && MINIFIED=1 node_modules/.bin/webpack",

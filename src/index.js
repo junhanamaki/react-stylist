@@ -1,5 +1,5 @@
 import { register } from './Registry.js';
-import SlideLeft from './styles/SlideLeft.css';
+import SlideLeft from './css/SlideLeft.css';
 
 register('stylist.slide-left', SlideLeft);
 
