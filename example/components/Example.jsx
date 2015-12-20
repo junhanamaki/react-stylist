@@ -2,6 +2,10 @@ import React from 'react';
 import Stylist from '../../src/index.js';
 import pickColor from '../utils/colors.js';
 
+function getInitialState() {
+  return { seed: 0, hide: false, items: [] };
+}
+
 export default class Example extends React.Component {
   constructor() {
     super();
@@ -10,17 +14,18 @@ export default class Example extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.renderItems = this.renderItems.bind(this);
+    this.reset = this.reset.bind(this);
 
-    this.seed = 0;
-    this.state = { hide: false, items: [] };
+    this.state = getInitialState();
   }
 
   addItem() {
-    const { items } = this.state;
+    const { state: { seed, items } } = this;
+    const id = seed + 1;
 
-    items.push({ id: ++this.seed, color: pickColor() });
+    items.push({ id, color: pickColor() });
 
-    this.setState({ items });
+    this.setState({ items, seed: id });
   }
 
   removeItem(id) {
@@ -35,6 +40,10 @@ export default class Example extends React.Component {
 
   toggle() {
     this.setState({ hide: !this.state.hide });
+  }
+
+  reset() {
+    this.setState(getInitialState());
   }
 
   renderItems() {
@@ -56,6 +65,7 @@ export default class Example extends React.Component {
     const {
       addItem,
       toggle,
+      reset,
       renderItems,
       state: { hide },
     } = this;
@@ -64,7 +74,8 @@ export default class Example extends React.Component {
       <div>
         <div className="control-panel">
           <button onClick={addItem}>Add item</button>
-          <button onClick={toggle}>{hide ? 'show' : 'hide'}</button>
+          <button onClick={toggle}>{hide ? 'Show' : 'Hide'}</button>
+          <button onClick={reset}>Reset</button>
         </div>
         <br />
         <Stylist
