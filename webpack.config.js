@@ -8,13 +8,16 @@ module.exports = {
   },
   module: {
     preLoaders: [{
-      loader: 'eslint-loader',
-      test: /\.(js|jsx)$/
+      test: /\.(js|jsx)$/,
+      loader: 'eslint-loader'
     }],
     loaders: [{
-      loader: 'babel-loader',
       test: /\.(js|jsx)$/,
+      loader: 'babel-loader',
       query: { presets: ['es2015', 'stage-0', 'react'] }
+    }, {
+      test: /\.css$/,
+      loader: "style-loader!css-loader"
     }]
   },
   eslint: {

@@ -1,5 +1,5 @@
 import { register } from './Registry.js';
-import SlideLeft from 'style-loader!css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]!./css/SlideLeft.css';
+import SlideLeft from 'style-loader!css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]!./styles/SlideLeft.css';
 
 register('stylist.slide-left', SlideLeft);
 
