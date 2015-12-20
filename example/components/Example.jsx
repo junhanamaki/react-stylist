@@ -6,14 +6,16 @@ export default class Example extends React.Component {
   constructor() {
     super();
 
-    this.onAddClick = this.onAddClick.bind(this);
-    this.onItemClick = this.onItemClick.bind(this);
+    this.addItem = this.addItem.bind(this);
+    this.toggle = this.toggle.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+    this.renderItems = this.renderItems.bind(this);
 
     this.seed = 0;
-    this.state = { items: [] };
+    this.state = { hide: false, items: [] };
   }
 
-  onAddClick() {
+  addItem() {
     const { items } = this.state;
 
     items.push({ id: ++this.seed, color: pickColor() });
@@ -21,7 +23,7 @@ export default class Example extends React.Component {
     this.setState({ items });
   }
 
-  onItemClick(id) {
+  removeItem(id) {
     const items = this.state.items.reduce((array, item) => {
       if (item.id !== id) { array.push(item); }
 
@@ -31,12 +33,16 @@ export default class Example extends React.Component {
     this.setState({ items });
   }
 
+  toggle() {
+    this.setState({ hide: !this.state.hide });
+  }
+
   renderItems() {
     return this.state.items.map(({ id, color }) => {
       return (
         <div
           key={id}
-          onClick={() => this.onItemClick(id)}
+          onClick={() => this.removeItem(id)}
           className="item"
           style={{ color }}
         >
@@ -45,15 +51,27 @@ export default class Example extends React.Component {
       );
     });
   }
+
   render() {
+    const {
+      addItem,
+      toggle,
+      renderItems,
+      state: { hide },
+    } = this;
+
     return (
       <div>
         <div className="control-panel">
-          <button onClick={this.onAddClick}>Add</button>
+          <button onClick={addItem}>Add item</button>
+          <button onClick={toggle}>{hide ? 'show' : 'hide'}</button>
         </div>
         <br />
-        <Stylist className="stylist">
-          {this.renderItems()}
+        <Stylist
+          hide={hide}
+          className="stylist"
+        >
+          {renderItems()}
         </Stylist>
       </div>
     );

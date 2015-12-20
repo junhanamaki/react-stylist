@@ -6,7 +6,7 @@ var MINIFIED = JSON.parse(process.env.MINIFIED || '0');
 var DEV_SERVER = JSON.parse(process.env.DEV_SERVER || '0');
 
 module.exports = {
-  entry: './example/index.js',
+  entry: DEV_SERVER ? './example/index.js' : './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: MINIFIED ? 'react-stylist.min.js' : 'react-stylist.js'
