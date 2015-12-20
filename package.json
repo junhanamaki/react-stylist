@@ -12,7 +12,7 @@
     "lib:build": "node_modules/.bin/babel src --out-dir lib",
     "lib:rebuild": "npm run lib:clear && npm run lib:build",
     "dist:clear": "rm -rf dist",
-    "dist:build": "node_modules/.bin/webpack",
+    "dist:build": "node_modules/.bin/webpack && MINIFIED=1 node_modules/.bin/webpack",
     "dist:rebuild": "npm run dist:clear && npm run dist:build",
     "build:lib": "npm run lint && npm run lib:rebuild",
     "build:dist": "npm run dist:rebuild",
