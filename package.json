@@ -11,7 +11,13 @@
     "lib:clear": "rm -rf lib",
     "lib:build": "node_modules/.bin/babel src --out-dir lib",
     "lib:rebuild": "npm run lib:clear && npm run lib:build",
-    "build": "npm run lint && npm run lib:rebuild"
+    "dist:clear": "rm -rf dist",
+    "dist:build": "node_modules/.bin/webpack",
+    "dist:rebuild": "npm run dist:clear && npm run dist:build",
+    "build:lib": "npm run lint && npm run lib:rebuild",
+    "build:dist": "npm run dist:rebuild",
+    "build": "npm run build:dist && npm run build:lib",
+    "clear": "npm run dist:clear && npm run lib:clear"
   },
   "keywords": [
     "javascript",
@@ -21,6 +27,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "extract-text-webpack-plugin": "^0.9.1",
     "react-addons-css-transition-group": "^0.14.3"
   },
   "devDependencies": {
