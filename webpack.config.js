@@ -3,6 +3,7 @@ var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var MINIFIED = JSON.parse(process.env.MINIFIED || '0');
+var DEV_SERVER = JSON.parse(process.env.DEV_SERVER || '0');
 
 module.exports = {
   entry: './example/index.js',
@@ -21,7 +22,14 @@ module.exports = {
       query: { presets: ['es2015', 'stage-0', 'react'] }
     }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]')
+      include: path.resolve(__dirname, 'example'),
+      loader: 'style-loader!css-loader'
+    }, {
+      test: /\.css$/,
+      include: path.resolve(__dirname, 'src'),
+      loader: DEV_SERVER
+        ? 'style-loader!css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]'
+        : ExtractTextPlugin.extract('style-loader', 'css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]')
     }]
   },
   plugins: MINIFIED

@@ -5,7 +5,7 @@
   "author": "jun.hanamaki@gmail.com",
   "main": "lib/index.js",
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server --progress --colors --config webpack.config.js",
+    "start": "DEV_SERVER=1 node_modules/.bin/webpack-dev-server --progress --colors --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "node_modules/.bin/eslint src/**",
     "lib:clear": "rm -rf lib",
