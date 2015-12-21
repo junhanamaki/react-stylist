@@ -72,7 +72,7 @@ export default class Example extends React.Component {
 
     return (
       <div>
-        <div className="control-panel">
+        <div className="control">
           <button onClick={addItem}>Add item</button>
           <button onClick={toggle}>{hide ? 'Show' : 'Hide'}</button>
           <button onClick={reset}>Reset</button>
