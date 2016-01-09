@@ -1,22 +1,11 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import nonNull from './utils/nonNull.js';
-import Transition from './Transition.js';
+import TransitionFactory from './TransitionFactory.js';
 
 const {
   Component,
   PropTypes: { string, number, node, any, bool },
-  Children: { count: countChildren },
 } = React;
-
-function buildTransitionParams(type, props) {
-  return [
-    nonNull(props[`${type}Name`], props.name),
-    nonNull(props[`${type}Easing`], props.easing),
-    nonNull(props[`${type}Duration`], props.duration),
-    nonNull(props[`${type}Interval`], props.interval),
-  ];
-}
 
 export default class Stylist extends Component {
   static propTypes = {
@@ -61,22 +50,21 @@ export default class Stylist extends Component {
   constructor(...args) {
     super(...args);
 
-    const props = args[0];
-    const count = countChildren(props.children);
+    const transitionFactory = new TransitionFactory(args[0]);
 
-    this.transitionAppear = new Transition('appear', ...buildTransitionParams('appear', props), count);
-    this.transitionEnter = new Transition('enter', ...buildTransitionParams('enter', props), count);
-    this.transitionLeave = new Transition('leave', ...buildTransitionParams('leave', props), count);
-    this.transitionHide = new Transition('hide', ...buildTransitionParams('hide', props), count);
+    this.transitionAppear = transitionFactory.build('appear');
+    this.transitionEnter = transitionFactory.build('enter');
+    this.transitionLeave = transitionFactory.build('leave');
+    this.transitionHide = transitionFactory.build('hide');
   }
 
   componentWillReceiveProps(newProps) {
-    const count = countChildren(newProps.children);
+    const transitionFactory = new TransitionFactory(newProps);
 
-    this.transitionAppear.update(...buildTransitionParams('appear', newProps), count);
-    this.transitionEnter.update(...buildTransitionParams('enter', newProps), count);
-    this.transitionLeave.update(...buildTransitionParams('leave', newProps), count);
-    this.transitionHide.update(...buildTransitionParams('hide', newProps), count);
+    transitionFactory.update(this.transitionAppear);
+    transitionFactory.update(this.transitionEnter);
+    transitionFactory.update(this.transitionLeave);
+    transitionFactory.update(this.transitionHide);
   }
 
   componentWillUnmount() {

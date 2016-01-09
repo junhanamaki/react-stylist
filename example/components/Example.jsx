@@ -1,6 +1,7 @@
 import React from 'react';
 import Stylist from '../../src/index.js';
 import pickColor from '../utils/colors.js';
+import Item from './Item.jsx';
 
 function getInitialState() {
   return { seed: 0, hide: false, items: [] };
@@ -47,18 +48,9 @@ export default class Example extends React.Component {
   }
 
   renderItems() {
-    return this.state.items.map(({ id, color }) => {
-      return (
-        <div
-          key={id}
-          onClick={() => this.removeItem(id)}
-          className="item"
-          style={{ color }}
-        >
-          {`${id} - ${color}`}
-        </div>
-      );
-    });
+    return this.state.items.map((item) => (
+      <Item key={item.id} onClick={this.removeItem} {...item} />
+    ));
   }
 
   render() {
