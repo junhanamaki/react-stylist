@@ -8,16 +8,16 @@
     "start": "DEV_SERVER=1 node_modules/.bin/webpack-dev-server --progress --colors --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "node_modules/.bin/eslint src/**",
-    "lib:clear": "rm -rf lib",
+    "lib:clean": "rm -rf lib",
     "lib:build": "node_modules/.bin/babel src --out-dir lib && mkdir lib/css && cp src/css/* lib/css",
-    "lib:rebuild": "npm run lib:clear && npm run lib:build",
-    "dist:clear": "rm -rf dist",
+    "lib:rebuild": "npm run lib:clean && npm run lib:build",
+    "dist:clean": "rm -rf dist",
     "dist:build": "node_modules/.bin/webpack && MINIFIED=1 node_modules/.bin/webpack",
-    "dist:rebuild": "npm run dist:clear && npm run dist:build",
+    "dist:rebuild": "npm run dist:clean && npm run dist:build",
     "build:lib": "npm run lint && npm run lib:rebuild",
     "build:dist": "npm run dist:rebuild",
     "build": "npm run build:dist && npm run build:lib",
-    "clear": "npm run dist:clear && npm run lib:clear"
+    "clean": "npm run dist:clean && npm run lib:clean"
   },
   "keywords": [
     "javascript",
