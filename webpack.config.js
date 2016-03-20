@@ -12,33 +12,22 @@ module.exports = {
     filename: MINIFIED ? 'react-stylist.min.js' : 'react-stylist.js'
   },
   module: {
-    preLoaders: [{
-      test: /\.(js|jsx)$/,
-      loader: 'eslint-loader'
-    }],
-    loaders: [{
-      test: /\.(js|jsx)$/,
-      loader: 'babel-loader',
-      query: { presets: ['es2015', 'stage-0', 'react'] }
-    }, {
-      test: /\.css$/,
-      include: path.resolve(__dirname, 'example'),
-      loader: 'style-loader!css-loader'
-    }, {
-      test: /\.css$/,
-      include: path.resolve(__dirname, 'src'),
+    preLoaders: [
+      { loader: 'eslint', test: /\.(js|jsx)$/, exclude: /node_modules/ }
+    ],
+    loaders: [
+      { loader: 'babel', test: /\.(js|jsx)$/, exclude: /node_modules/ },
+      { loader: 'style!css', test: /\.css$/, include: /example/, exclude: /node_modules/ },
+      { test: /\.css$/, include: /src/, exclude: /node_modules/,
       loader: DEV_SERVER
-        ? 'style-loader!css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]'
-        : ExtractTextPlugin.extract('style-loader', 'css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]')
+        ? 'style!css?modules&localIdentName=[name]__[local]___[hash:base64:5]'
+        : ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[name]__[local]___[hash:base64:5]')
     }]
   },
   plugins: MINIFIED
     ? [
-        new ExtractTextPlugin("react-stylist.min.css"),
+        new ExtractTextPlugin('react-stylist.min.css'),
         new webpack.optimize.UglifyJsPlugin({ minimize: true })
       ]
-    : [new ExtractTextPlugin("react-stylist.css")],
-  eslint: {
-    configFile: path.resolve(__dirname, '.eslintrc')
-  }
+    : [new ExtractTextPlugin('react-stylist.css')]
 };
